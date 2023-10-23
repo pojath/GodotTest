@@ -1,0 +1,8 @@
+res://scenes/world.tscn
+res://scenes/Player2.tscn
+res://scenes/SpawnPoint.gd
+res://Player2.gd
+res://scenes/Player.tscn
+res://scripts/node_2d_test.gd
+res://scripts/LeftBoundWall.gd
+res://scripts/SpawnPoint.gd

@@ -1,0 +1,66 @@
+[gd_scene load_steps=8 format=3 uid="uid://6x1adymveuvu"]
+
+[ext_resource type="Script" path="res://scripts/SpawnPoint.gd" id="1_ck230"]
+[ext_resource type="PackedScene" uid="uid://byy0baom61guu" path="res://scenes/Player2.tscn" id="2_qeng8"]
+[ext_resource type="Script" path="res://scripts/LeftBoundWall.gd" id="3_0kh8p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qx3ae"]
+size = Vector2(89, 788)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aa3vn"]
+size = Vector2(909, 68)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ymsgp"]
+normal = Vector2(-1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_wdqhl"]
+normal = Vector2(1, 0)
+
+[node name="World" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-500, 168)
+shape = SubResource("RectangleShape2D_qx3ae")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(500, 171)
+shape = SubResource("RectangleShape2D_qx3ae")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 525)
+shape = SubResource("RectangleShape2D_aa3vn")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-4, -83)
+scale = Vector2(-88344.5, -621.751)
+zoom = Vector2(0.5, 0.5)
+
+[node name="SpawnPoint" type="Node2D" parent="."]
+position = Vector2(0, -306)
+script = ExtResource("1_ck230")
+
+[node name="Player2" parent="SpawnPoint" instance=ExtResource("2_qeng8")]
+
+[node name="Bounds" type="Node2D" parent="."]
+position = Vector2(0, -306)
+
+[node name="LeftBound" type="Area2D" parent="Bounds"]
+position = Vector2(-450, 0)
+
+[node name="LeftBoundWall" type="CollisionShape2D" parent="Bounds/LeftBound"]
+shape = SubResource("WorldBoundaryShape2D_ymsgp")
+script = ExtResource("3_0kh8p")
+
+[node name="LeftSpawnPoint" type="Marker2D" parent="Bounds/LeftBound"]
+position = Vector2(50, 0)
+
+[node name="RightBound" type="Area2D" parent="Bounds"]
+position = Vector2(450, 0)
+
+[node name="RightBoundWall" type="CollisionShape2D" parent="Bounds/RightBound"]
+shape = SubResource("WorldBoundaryShape2D_wdqhl")
+
+[node name="RightSpawnPoint" type="Marker2D" parent="Bounds/RightBound"]
+position = Vector2(-50, 0)

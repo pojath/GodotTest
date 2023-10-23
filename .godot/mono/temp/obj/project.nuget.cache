@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "XOJCyDjp9bHLewVOVANUBBDZ+JiNJIU8x8e1iQmZrKKZmImsvcSb/2wDh+fIIqGwVEQh+wPJTJ/oo7kMgE3LEQ==",
+  "success": true,
+  "projectFilePath": "F:\\Godot\\TestGodotGame\\TestGodotGame.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Cookie\\.nuget\\packages\\godot.sourcegenerators\\4.1.2\\godot.sourcegenerators.4.1.2.nupkg.sha512",
+    "C:\\Users\\Cookie\\.nuget\\packages\\godotsharp\\4.1.2\\godotsharp.4.1.2.nupkg.sha512",
+    "C:\\Users\\Cookie\\.nuget\\packages\\godotsharpeditor\\4.1.2\\godotsharpeditor.4.1.2.nupkg.sha512"
+  ],
+  "logs": []
+}
