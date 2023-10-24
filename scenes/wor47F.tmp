@@ -1,8 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://6x1adymveuvu"]
+[gd_scene load_steps=8 format=3 uid="uid://6x1adymveuvu"]
 
 [ext_resource type="Script" path="res://scripts/SpawnPoint.gd" id="1_ck230"]
 [ext_resource type="PackedScene" uid="uid://byy0baom61guu" path="res://scenes/Player2.tscn" id="2_qeng8"]
 [ext_resource type="Script" path="res://scenes/BoundArea.gd" id="3_3s0jc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qx3ae"]
+size = Vector2(89, 788)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aa3vn"]
+size = Vector2(909, 68)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ymsgp"]
 normal = Vector2(1, 0)
@@ -14,11 +20,17 @@ normal = Vector2(-1, 0)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
-position = Vector2(0.204346, 571)
-scale = Vector2(0.999731, 1)
-build_mode = 1
-polygon = PackedVector2Array(-448.325, -275, -448.325, 77, 447.916, 77, 447.916, -571, 389, -570, 383.899, 5, -384.308, 5, -384.308, -571, -448.325, -571)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-500, 168)
+shape = SubResource("RectangleShape2D_qx3ae")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(500, 171)
+shape = SubResource("RectangleShape2D_qx3ae")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 525)
+shape = SubResource("RectangleShape2D_aa3vn")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 scale = Vector2(-88344.5, -621.751)
@@ -39,7 +51,7 @@ shape = SubResource("WorldBoundaryShape2D_ymsgp")
 
 [node name="LeftSpawnPoint" type="Marker2D" parent="BoundArea"]
 unique_name_in_owner = true
-position = Vector2(-375, -306)
+position = Vector2(-400, -306)
 
 [node name="RightBoundWall" type="CollisionShape2D" parent="BoundArea"]
 position = Vector2(450, -306)
@@ -47,7 +59,6 @@ shape = SubResource("WorldBoundaryShape2D_wdqhl")
 
 [node name="RightSpawnPoint" type="Marker2D" parent="BoundArea"]
 unique_name_in_owner = true
-position = Vector2(375, -306)
+position = Vector2(399, -306)
 
-[connection signal="area_entered" from="BoundArea" to="BoundArea" method="_on_area_entered"]
 [connection signal="body_entered" from="BoundArea" to="BoundArea" method="_on_body_entered"]

@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://Player2.gd" id="1_6csrt"]
 [ext_resource type="Texture2D" uid="uid://dr538f8684s05" path="res://icon.svg" id="2_3rldu"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_a16ms"]
-size = Vector2(126, 124)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o8haf"]
+size = Vector2(126, 126)
 
 [node name="Player2" type="Node2D"]
 
@@ -12,12 +12,14 @@ size = Vector2(126, 124)
 position = Vector2(0, -1)
 gravity_scale = 0.0
 continuous_cd = 2
+max_contacts_reported = 10
+contact_monitor = true
 script = ExtResource("1_6csrt")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
-shape = SubResource("RectangleShape2D_a16ms")
 
 [node name="Sprite2D" type="Sprite2D" parent="RigidBody2D"]
 texture = ExtResource("2_3rldu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+shape = SubResource("RectangleShape2D_o8haf")
 
 [connection signal="body_entered" from="RigidBody2D" to="RigidBody2D" method="_on_body_entered"]

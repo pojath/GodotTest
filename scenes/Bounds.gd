@@ -18,3 +18,7 @@ func _on_body_entered(body):
 	print (new_position)
 	print(body.position) 
 	body.transform.origin = new_position
+
+
+func _on_left_bound_body_entered(body):
+	pass # Replace with function body.
