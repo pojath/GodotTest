@@ -13,7 +13,11 @@ var FRICTION = 100
 signal player_collision(object)
 
 func _on_Player_body_entered(body):
-	emit_signal("playe_collision", body)
+	emit_signal("player_collision", body)
+
+
+
+
 
 @onready var parent_node = get_parent()
 
@@ -65,3 +69,7 @@ func apply_movement(accel):
 #		var other_body = body
 #		body.gravity_scale = 0
 #		gravity_scale = 0
+
+
+func _on_body_entered(body):
+	print("collided with something!")

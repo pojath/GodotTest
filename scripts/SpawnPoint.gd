@@ -31,4 +31,6 @@ func spawnPlayer():
 	add_child(instance)
 	elapsedTime = 0
 	instance.connect("player_collision", self, "_on_player_collision")
+	
+
 
