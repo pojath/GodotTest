@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "F:\\Godot\\TestGodotGame\\TestGodotGame.csproj": {}
+    "F:\\TestGodotGame\\TestGodotGame.csproj": {}
   },
   "projects": {
-    "F:\\Godot\\TestGodotGame\\TestGodotGame.csproj": {
+    "F:\\TestGodotGame\\TestGodotGame.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\Godot\\TestGodotGame\\TestGodotGame.csproj",
+        "projectUniqueName": "F:\\TestGodotGame\\TestGodotGame.csproj",
         "projectName": "TestGodotGame",
-        "projectPath": "F:\\Godot\\TestGodotGame\\TestGodotGame.csproj",
+        "projectPath": "F:\\TestGodotGame\\TestGodotGame.csproj",
         "packagesPath": "C:\\Users\\Cookie\\.nuget\\packages\\",
-        "outputPath": "F:\\Godot\\TestGodotGame\\.godot\\mono\\temp\\obj\\",
+        "outputPath": "F:\\TestGodotGame\\.godot\\mono\\temp\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
