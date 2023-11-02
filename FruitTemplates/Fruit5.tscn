@@ -1,28 +1,27 @@
 [gd_scene load_steps=4 format=3 uid="uid://cshcy5lxbynd5"]
 
 [ext_resource type="Script" path="res://scenes/RigidPlayer.gd" id="1_2k4c5"]
-[ext_resource type="Texture2D" uid="uid://syf2pebsgshx" path="res://duck-idle-1.png" id="2_vjplf"]
+[ext_resource type="Texture2D" uid="uid://cs1x1xqwe5ph6" path="res://images/5ball.png" id="2_q8h6o"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hcb4l"]
 radius = 73.0565
 
-[node name="Fruit5" type="Node2D"]
-
-[node name="Fruit5" type="RigidBody2D" parent="."]
+[node name="Fruit5" type="RigidBody2D"]
 gravity_scale = 0.0
 continuous_cd = 2
 script = ExtResource("1_2k4c5")
 
-[node name="Sprite2D" type="Sprite2D" parent="Fruit5"]
-position = Vector2(0.5, -0.5)
-scale = Vector2(3.5, 3.5)
-texture = ExtResource("2_vjplf")
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1, -4)
+scale = Vector2(0.269744, 0.272653)
+texture = ExtResource("2_q8h6o")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Fruit5"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, -1)
+scale = Vector2(0.75, 0.75)
 shape = SubResource("CircleShape2D_hcb4l")
 
-[node name="Line2D" type="Line2D" parent="Fruit5"]
+[node name="Line2D" type="Line2D" parent="."]
 modulate = Color(0.109804, 0.615686, 0.580392, 0.541176)
 light_mask = 524288
 visibility_layer = 524288

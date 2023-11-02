@@ -1,3 +1,5 @@
+Timer
+Marker2D
 Line2D
 RayCast2D
 RigidBody2D
@@ -10,8 +12,6 @@ Polygon2D
 CollisionPolygon2D
 Node
 Node2D
-Marker2D
-Timer
 Camera2D
 MeshInstance2D
 DirectionalLight2D
