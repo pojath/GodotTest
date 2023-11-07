@@ -1,13 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://6x1adymveuvu"]
+[gd_scene load_steps=7 format=3 uid="uid://6x1adymveuvu"]
 
 [ext_resource type="Script" path="res://scripts/SpawnPoint.gd" id="1_ck230"]
 [ext_resource type="Script" path="res://scripts/StaticBody2D2.gd" id="3_280o1"]
+[ext_resource type="PackedScene" uid="uid://bw2o80aeii2ps" path="res://scenes/canvas_layer.tscn" id="3_igjpx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mln8c"]
 size = Vector2(58.5, 257)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4dt1n"]
 size = Vector2(356.5, 305)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0j1p3"]
+size = Vector2(768, 20)
 
 [node name="World" type="Node2D"]
 
@@ -52,5 +56,15 @@ position = Vector2(-300, -304)
 [node name="RightSpawnPoint" type="Marker2D" parent="StaticBody2D2"]
 unique_name_in_owner = true
 position = Vector2(300, -304)
+
+[node name="Ceiling" type="CollisionShape2D" parent="StaticBody2D2"]
+unique_name_in_owner = true
+position = Vector2(0, 440)
+rotation = 3.14159
+shape = SubResource("RectangleShape2D_0j1p3")
+one_way_collision = true
+
+[node name="CanvasLayer" parent="." instance=ExtResource("3_igjpx")]
+unique_name_in_owner = true
 
 [connection signal="timeout" from="SpawnPoint/Timer" to="SpawnPoint" method="_on_timer_timeout"]

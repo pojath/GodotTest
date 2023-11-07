@@ -19,45 +19,44 @@ var sup2
 var fruitDict = {}
 var fruitKey = 1
 var increments = 0
+var newFruit = false
+var whichFruit
+var pos3 = Vector2()
+var possible_fruits = [
+	preload("res://FruitTemplates/Fruit1.tscn"),
+	preload("res://FruitTemplates/Fruit2.tscn"),
+	preload("res://FruitTemplates/Fruit3.tscn"),
+	preload("res://FruitTemplates/Fruit4.tscn"),
+	preload("res://FruitTemplates/Fruit5.tscn"),
+	preload("res://FruitTemplates/Fruit6.tscn"),
+	preload("res://FruitTemplates/Fruit7.tscn"),
+	preload("res://FruitTemplates/Fruit8.tscn"),
+	preload("res://FruitTemplates/Fruit9.tscn")
+	]
+var scoreToSend
+var endGame = false
+
+signal ScoreUpdater
+signal GameState
 
 
-#signal myCustomSignal
 
 func _ready():
-	#load the packed scene
-	var scene_instance = preload("res://FruitTemplates/Fruit1.tscn")
-
-	fruitList.append(scene_instance)
-	scene_instance = preload("res://FruitTemplates/Fruit2.tscn")
-
-	fruitList.append(scene_instance)
-	scene_instance = preload("res://FruitTemplates/Fruit3.tscn")
-
-	fruitList.append(scene_instance)
-	scene_instance = preload("res://FruitTemplates/Fruit4.tscn")
-
-	fruitList.append(scene_instance)
-	scene_instance = preload("res://FruitTemplates/Fruit5.tscn")
-
-	fruitList.append(scene_instance)
-	scene_instance = preload("res://FruitTemplates/Fruit6.tscn")
-
-	fruitList.append(scene_instance)
-	scene_instance = preload("res://FruitTemplates/Fruit7.tscn")
-
-	fruitList.append(scene_instance)
-	scene_instance = preload("res://FruitTemplates/Fruit8.tscn")
-
-	fruitList.append(scene_instance)
-	scene_instance = preload("res://FruitTemplates/Fruit9.tscn")
-
-	fruitList.append(scene_instance)
+	var canvas = get_node("/root/World/CanvasLayer")
+	connect("ScoreUpdater", Callable(canvas, "_update_score"))
+	connect("GameState", Callable(canvas, "save_score"))
 	
+	for i in possible_fruits:
+		fruitList.append(i)
+
 	#pick a random fruit from fruitlist
 	_load_the_load_zone()
 	_move_to_spawn()
 	_load_the_load_zone()
 	
+func _process(delta):
+	pass
+
 
 func _fruit_was_dropped():
 	#this is the enter signal function
@@ -74,9 +73,15 @@ func _spawnPlayer():
 	elapsedTime = 0
 
 #this signal is sent from rigid player so we can combine fruits...
-func _custom_signal(fruitToSpawn, pos3):
-	print("this is a spawn point test signal, we're spawning #: ", fruitToSpawn)
-	_fruit_combiner(fruitToSpawn, pos3)
+func _custom_signal(wishFruit, a):
+	whichFruit = wishFruit
+	scoreToSend = a
+	print(whichFruit)
+	
+	if !newFruit:
+		newFruit = true
+	else:
+		_replace_fruit()
 	
 func _find_next_fruit():
 	var maxFruitIndex = 4
@@ -89,7 +94,6 @@ func _fruit_maker():
 	increments += 1
 	add_child(nextFruit)
 
-
 func _move_to_load_zone():
 	nextFruit.global_position = %LoadingZone.global_position
 	thefruit = nextFruit
@@ -99,48 +103,27 @@ func _move_to_spawn():
 	nextFruit.global_position = self.global_position
 	thefruit._ready_to_drop()
 	
-	#connect this to a timer
-	
-#	_load_the_load_zone()
-	
 func _load_the_load_zone():
 	_find_next_fruit()
 	_fruit_maker()
 	_move_to_load_zone()
 
-func _fruit_combiner(fruitToSpawn, pos3):
-	fruitDict.clear()
-	if fruitToSpawn >8:
-		pass
-	print("doing fruit combiner")
-	#this is for combining fruits...
-	instance = fruitList[fruitToSpawn-1].instantiate()
-	instance._set_name(fruitToSpawn, increments)
-	increments += 1
-	add_child(instance)
-	instance.global_position = pos3
-	var blah = instance
-	blah._not_ready_to_drop()
-	blah.weSpawned()
 
 func _on_timer_timeout():
 	_move_to_spawn()
 	_load_the_load_zone()
 
-func _collision_manager(myFruit, theirFruit, pos3, fruitID):
-	print("my fruit is: ", myFruit)
-	print("their fruit is: ", theirFruit)
-	fruitDict[myFruit] = theirFruit
-	print(fruitDict)
-	for key in fruitDict:
-		if key != null:
-			if is_instance_valid(myFruit):
-				myFruit.queue_free()
-			if is_instance_valid(theirFruit):
-				theirFruit.queue_free()
-			var number = int(fruitID.right(1)) + 1
-			_fruit_combiner(number, pos3)
-			
-
-	
-	
+func _replace_fruit():
+	if newFruit:
+		print(scoreToSend)
+		ScoreUpdater.emit(scoreToSend)
+		newFruit = false
+		var instance = fruitList[whichFruit].instantiate()
+		add_child(instance)
+		instance.global_position = pos3
+		instance.gravity_scale = 1
+		instance._delete_line()
+		
+func _end_the_game():
+	endGame = true
+	GameState.emit()

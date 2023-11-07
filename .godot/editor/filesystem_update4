@@ -1,7 +1,4 @@
 res://scenes/world.tscn
 res://scripts/SpawnPoint.gd
-res://FruitTemplates/Fruit3.tscn
-res://FruitTemplates/Fruit4.tscn
-res://FruitTemplates/Fruit5.tscn
-res://FruitTemplates/Fruit1.tscn
 res://scenes/RigidPlayer.gd
+res://scenes/UI_Script.gd

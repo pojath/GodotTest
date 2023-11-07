@@ -6,21 +6,23 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_hcb4l"]
 radius = 73.0565
 
-[node name="Fruit8" type="RigidBody2D"]
+[node name="Fruit8" type="RigidBody2D" groups=["8"]]
 gravity_scale = 0.0
 continuous_cd = 2
+max_contacts_reported = 10
+contact_monitor = true
 script = ExtResource("1_fwcj4")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." groups=["Fruit8"]]
 position = Vector2(-1.24807, -4.19614)
 scale = Vector2(0.356438, 0.360333)
 texture = ExtResource("2_kpooh")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["Fruit8"]]
 position = Vector2(-0.5, -1)
 shape = SubResource("CircleShape2D_hcb4l")
 
-[node name="Line2D" type="Line2D" parent="."]
+[node name="Line2D" type="Line2D" parent="." groups=["Fruit8"]]
 modulate = Color(0.109804, 0.615686, 0.580392, 0.541176)
 light_mask = 524288
 visibility_layer = 524288
